@@ -31,7 +31,8 @@ const App = () => (
               href="https://modernjs.dev/blog"
               target="_blank"
               rel="noopener noreferrer"
-              className="card">
+              className="card"
+            >
               <h2>Blog </h2>
             </a>
           </div>
@@ -40,12 +41,12 @@ const App = () => (
           <a
             href="https://modernjs.dev"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             Powered by Modern.js
           </a>
         </footer>
       </div>
-
     </Route>
     <Route path="*">
       <div>404</div>
