@@ -1,9 +1,14 @@
 import './App.css';
+import { Typography, Button } from 'antd';
+
+const { Title } = Typography;
 
 const App = () => (
   <div>
-    <div>This is a landing page</div>
-    <a href="/console">Go to console</a>
+    <Title>This is a landing page</Title>
+    <Button type="primary" href="/console">
+      Go to console
+    </Button>
   </div>
 );
 

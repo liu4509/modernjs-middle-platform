@@ -1,9 +1,12 @@
 import React from 'react';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 const Dashboard: React.FC = () => {
   return (
     <div>
-      <div>THis is dashboard</div>
+      <Title>THis is dashboard</Title>
     </div>
   );
 };
