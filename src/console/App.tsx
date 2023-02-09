@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable no-console */
+import React, { useState, useEffect } from 'react';
 import loadable from '@modern-js/runtime/loadable';
-import { Route, Switch, Link } from '@modern-js/runtime/router';
+import { Route, Switch, Link, useLocation } from '@modern-js/runtime/router';
 import { Button, Menu } from 'antd';
 import type { MenuProps } from 'antd';
 // 打开可选功能 less 不需要导入样式 可以按需加载
@@ -9,11 +11,11 @@ import './App.css';
 
 const items: MenuProps['items'] = [
   {
-    label: <Link to="/">Dashboard</Link>,
+    label: <Link to="/dashboard">Dashboard</Link>,
     key: 'dashboard',
   },
   {
-    label: <Link to="/table">TableList</Link>,
+    label: <Link to="/tableList">TableList</Link>,
     key: 'tableList',
   },
 ];
@@ -27,11 +29,16 @@ const TableList = loadable(() => import('./tableList'));
 
 const App: React.FC = () => {
   const [current, setCurrent] = useState('dashboard');
+  const location = useLocation();
+
   const onClick: MenuProps['onClick'] = e => {
-    // eslint-disable-next-line no-console
     console.log('click ', e);
+    // 这里控制的导航栏的下标
     setCurrent(e.key);
   };
+  useEffect(() => {
+    setCurrent(location.pathname.slice(1));
+  }, []);
   return (
     <div>
       <Button type="primary" href="/">
@@ -44,15 +51,15 @@ const App: React.FC = () => {
           mode="horizontal"
           items={items}
         />
+        <Switch>
+          <Route path="/dashboard" exact={true}>
+            <Dashboard />
+          </Route>
+          <Route path="/tableList">
+            <TableList />
+          </Route>
+        </Switch>
       </div>
-      <Switch>
-        <Route path="/" exact={true}>
-          <Dashboard />
-        </Route>
-        <Route path="/table">
-          <TableList />
-        </Route>
-      </Switch>
     </div>
   );
 };

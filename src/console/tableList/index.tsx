@@ -1,9 +1,17 @@
 import { Table, Typography } from 'antd';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import users from '@api/users';
 
 const { Title } = Typography;
-
+interface User {
+  key: string;
+  name: string;
+  age: string;
+  country: string;
+}
 const TableList: React.FC = () => {
+  const [data, setData] = useState<User[]>([]);
+
   const columns = [
     {
       title: 'Name',
@@ -21,27 +29,13 @@ const TableList: React.FC = () => {
       key: 'country',
     },
   ];
-
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      country: 'America',
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      country: 'England',
-    },
-    {
-      key: '3',
-      name: 'Ming Li',
-      age: 30,
-      country: 'China',
-    },
-  ];
+  useEffect(() => {
+    const load = async () => {
+      const _data = await users();
+      setData(_data);
+    };
+    load();
+  }, []);
   return (
     <div>
       <Title>THis is tableList</Title>
