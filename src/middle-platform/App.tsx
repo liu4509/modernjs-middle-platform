@@ -6,7 +6,7 @@ const { Title } = Typography;
 const App = () => (
   <div>
     <Title>This is a landing page</Title>
-    <Button type="primary" href="/console">
+    <Button type="primary" href="/console/dashboard">
       Go to console
     </Button>
   </div>

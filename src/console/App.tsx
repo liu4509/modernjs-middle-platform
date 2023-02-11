@@ -1,5 +1,3 @@
-/* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import loadable from '@modern-js/runtime/loadable';
 import { Route, Switch, Link, useLocation } from '@modern-js/runtime/router';
@@ -30,12 +28,11 @@ const TableList = loadable(() => import('./tableList'));
 const App: React.FC = () => {
   const [current, setCurrent] = useState('dashboard');
   const location = useLocation();
-
   const onClick: MenuProps['onClick'] = e => {
-    console.log('click ', e);
     // 这里控制的导航栏的下标
     setCurrent(e.key);
   };
+  // 因为重新设置 setCurrent 当前 pathname 为 null 所以在使用的时候必须 url 准确
   useEffect(() => {
     setCurrent(location.pathname.slice(1));
   }, []);
