@@ -21,6 +21,7 @@
     "shared",
     "config",
     "modern.config.ts",
-    "api"
+    "api",
+    "server"
   ]
 }
